@@ -1,29 +1,28 @@
 // Add imports above this line
 import { galleryItems } from './gallery-items';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
 // Change code below this line
-const list = document.querySelector('.gallery');
 
-const markup = galleryItems
-  .map(
-    ({ preview, original, description }) => `	
-   <li class="gallery__item">
+const cont = document.querySelector(".gallery");
+cont.insertAdjacentHTML("beforeend", createMarkup(galleryItems));
+
+function createMarkup(arr) {
+  return arr
+    .map(({ preview, original, description }) => `
+<li class="gallery__item">
    <a class="gallery__link" href="${original}">
-      <img
-         class="gallery__image"
-         src="${preview}"
-         data-source="${original}"
-         alt="${description}"
-      />
+      <img class="gallery__image" src="${preview}" alt="${description}" />
    </a>
-   </li>`
-  )
-  .join('');
+</li>
+    `)
+    .join("");
+}
 
-list.insertAdjacentHTML('beforeend', markup);
-
-new SimpleLightbox('.gallery__link', {
+var lightbox = new SimpleLightbox(".gallery__item a", {
+  captionsData: "alt",
   captionDelay: 250,
-  captionsData: 'alt',
 });
+
+console.log(galleryItems);
