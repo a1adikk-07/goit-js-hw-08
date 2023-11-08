@@ -21,7 +21,7 @@ function onSubmit(i) {
       localStorage.removeItem(LOCALSTORAGE_KEY);
       userForm.reset();
    } else {
-      alert('All fields must be filled');
+      alert('Fill in the required fields🙏');
    }
 }
 
